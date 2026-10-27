@@ -44,7 +44,7 @@ jobs:
 
       - name: Upload IPTether.app
         run: ditto -c -k --keepParent build/IPTether.app build/IPTether.zip
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: IPTether-${{ github.sha }}
           path: build/IPTether.zip
