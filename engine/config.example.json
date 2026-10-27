@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "tag": "jane-macbook",
+  "port": 22,
+  "aws": {
+    "enabled": true,
+    "regions": []
+  },
+  "azure": {
+    "enabled": true,
+    "subscriptions": []
+  },
+  "prod": {
+    "exclude": true,
+    "namePattern": "prod",
+    "tagKeys": [
+      "env",
+      "environment"
+    ],
+    "tagValues": [
+      "prod",
+      "production"
+    ],
+    "allow": []
+  },
+  "ipServices": [
+    "https://checkip.amazonaws.com",
+    "https://ifconfig.me",
+    "https://api.ipify.org"
+  ],
+  "schedule": {
+    "automatic": false,
+    "intervalSeconds": 180,
+    "syncOnNetworkChange": true,
+    "dailySweep": "09:30"
+  }
+}

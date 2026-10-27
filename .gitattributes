@@ -1,0 +1,7 @@
+# Keep LF endings everywhere; the engine's bash breaks on CRLF.
+* text=auto eol=lf
+*.sh text eol=lf
+*.swift text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.md text eol=lf

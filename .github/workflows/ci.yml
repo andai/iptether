@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [development, main]
+  workflow_dispatch:
+
+# a newer push to the same branch or PR cancels the run in progress (macOS minutes are expensive)
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build and test
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: |
+          sw_vers
+          xcodebuild -version
+          swift --version
+          # runners have full Xcode, so build against its SDK rather than the
+          # Command Line Tools fallback that scripts/build-app.sh looks for
+          echo "SDKROOT=$(xcrun --sdk macosx --show-sdk-path)" >> "$GITHUB_ENV"
+
+      - name: Tests (Swift, then the engine with stubbed aws, az and curl; no cloud calls)
+        run: scripts/test.sh
+
+      - name: ShellCheck
+        run: |
+          command -v shellcheck >/dev/null || brew install shellcheck
+          shellcheck --severity=error engine/iptether-sync.sh engine/tests/run-tests.sh scripts/build-app.sh scripts/test.sh
+
+      - name: Build universal app
+        run: scripts/build-app.sh
+
+      - name: Upload IPTether.app
+        run: ditto -c -k --keepParent build/IPTether.app build/IPTether.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: IPTether-${{ github.sha }}
+          path: build/IPTether.zip
+          retention-days: 7

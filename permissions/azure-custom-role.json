@@ -1,0 +1,17 @@
+{
+  "Name": "IPTether SSH Rule Manager",
+  "IsCustom": true,
+  "Description": "Lets IPTether find network security groups that allow SSH and add, update or remove its own inbound rule. Grants nothing else.",
+  "Actions": [
+    "Microsoft.Network/networkSecurityGroups/read",
+    "Microsoft.Network/networkSecurityGroups/securityRules/read",
+    "Microsoft.Network/networkSecurityGroups/securityRules/write",
+    "Microsoft.Network/networkSecurityGroups/securityRules/delete"
+  ],
+  "NotActions": [],
+  "DataActions": [],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/00000000-0000-0000-0000-000000000000"
+  ]
+}

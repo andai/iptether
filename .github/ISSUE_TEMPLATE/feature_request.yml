@@ -1,0 +1,51 @@
+name: Feature request
+description: Suggest an improvement or a new capability.
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the situation, not the solution yet.
+      placeholder: When I switch to my phone's hotspot…
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like IPTether to do?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Menu bar app
+        - Settings
+        - Sync engine
+        - AWS
+        - Azure
+        - A new cloud provider
+        - Docs
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      description: IPTether only edits rules it created. Proposals that change that need extra discussion.
+      options:
+        - label: This doesn't require IPTether to change rules it didn't create, or I've explained why it should.
+          required: true

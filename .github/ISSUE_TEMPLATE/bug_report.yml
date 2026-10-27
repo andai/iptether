@@ -1,0 +1,100 @@
+name: Bug report
+description: Something in IPTether isn't working as expected.
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. **Security problems go through [private reporting](https://github.com/andai/iptether/security/advisories/new), not here.**
+        Before posting anything from a log, replace account IDs, subscription IDs, IP addresses and firewall names with placeholders.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, and what went wrong?
+      placeholder: I clicked Sync Now and the icon showed a warning…
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. …
+        2. …
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: IPTether version
+      description: From the app's About box, or the commit if you built it yourself.
+      placeholder: 0.1.0
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: macOS 15.3 (Apple silicon)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: clouds
+    attributes:
+      label: Which clouds?
+      multiple: true
+      options:
+        - AWS
+        - Azure
+    validations:
+      required: true
+
+  - type: input
+    id: cli-versions
+    attributes:
+      label: CLI versions
+      description: Output of `aws --version` and/or `az version --query '"azure-cli"'`.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: how-run
+    attributes:
+      label: How were you running it?
+      options:
+        - The menu bar app
+        - The engine on its own (iptether-sync.sh)
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Log excerpt
+      description: From `~/Library/Logs/IPTether/iptether.log`, around the problem. Redact it first.
+      render: text
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: redacted
+    attributes:
+      label: Before you submit
+      options:
+        - label: I removed real account IDs, subscription IDs, IP addresses and firewall names from everything above.
+          required: true
+        - label: I searched existing issues and this hasn't been reported.
+          required: true

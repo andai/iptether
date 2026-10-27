@@ -1,0 +1,8 @@
+# Every change needs a maintainer's review.
+# https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+*                       @andai/iptether-maintainers
+
+# These decide what IPTether is allowed to change on people's firewalls.
+/engine/                @andai/iptether-maintainers
+/permissions/           @andai/iptether-maintainers
+/.github/workflows/     @andai/iptether-maintainers
